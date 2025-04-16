@@ -6,6 +6,7 @@ export const useCalculator = () => {
     const [previousValue, setPreviousValue] = useState(null);
     const [operator, setOperator] = useState(null);
     const [waitingForNext, setWaitingForNext] = useState(false);
+    const [history, setHistory] = useState([]);
 
     const handleInput = (value) => {
         if (!isNaN(value)) {
@@ -15,28 +16,47 @@ export const useCalculator = () => {
             } else {
                 setDisplayValue((prev) => (prev === '0' ? value : prev + value));
             }
-        } else if (value === '.') {
+        }
+
+        else if (value === '.') {
             if (waitingForNext) {
                 setDisplayValue('0.');
                 setWaitingForNext(false);
             } else if (!displayValue.includes('.')) {
                 setDisplayValue(displayValue + '.');
             }
-        } else if (value === '+/-') {
+        }
+
+        else if (value === '+/-') {
             setDisplayValue((prev) => String(parseFloat(prev) * -1));
-        } else if (value === '%') {
+        }
+
+        else if (value === '%') {
             setDisplayValue((prev) => String(parseFloat(prev) / 100));
-        } else if (value === 'C') {
+        }
+
+        else if (value === 'C') {
             clear();
-        } else if (value === '=') {
+        }
+
+        else if (value === '=') {
             if (operator && previousValue !== null) {
                 const result = calculate(previousValue, displayValue, operator);
+
+                const entry = `${previousValue} ${operator} ${displayValue} = ${result}`;
+                setHistory((prev) => {
+                    const updated = [entry, ...prev];
+                    return updated.slice(0, 7);
+                });
+
                 setDisplayValue(String(result));
                 setPreviousValue(null);
                 setOperator(null);
                 setWaitingForNext(true);
             }
-        } else {
+        }
+
+        else {
             setOperator(value);
             setPreviousValue(displayValue);
             setWaitingForNext(true);
@@ -51,8 +71,14 @@ export const useCalculator = () => {
         setWaitingForNext(false);
     };
 
+    const clearHistory = () => {
+        setHistory([]);
+    };
+
     return {
         displayValue,
         handleInput,
+        history,
+        clearHistory
     };
 };
