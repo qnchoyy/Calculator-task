@@ -13,6 +13,15 @@ export const useCalculator = () => {
     };
 
     const handleNumberOrDecimal = (value) => {
+        if (value === '.') {
+            if (operatorPressed || displayValue === '0' || expression.endsWith('=')) {
+                setDisplayValue('0.');
+            } else if (!displayValue.includes('.')) {
+                setDisplayValue((prev) => prev + '.');
+            }
+            return;
+        }
+
         if (displayValue === '0' || operatorPressed || expression.endsWith('=')) {
             setDisplayValue(value);
         } else {
