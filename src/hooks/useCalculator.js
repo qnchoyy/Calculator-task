@@ -12,28 +12,48 @@ export const useCalculator = () => {
         setShowHistory((prev) => !prev);
     };
 
+    const handleNumberOrDecimal = (value) => {
+        if (displayValue === '0' || operatorPressed || expression.endsWith('=')) {
+            setDisplayValue(value);
+        } else {
+            setDisplayValue((prev) => prev + value);
+        }
+
+        if (expression.endsWith('=')) {
+            setExpression('');
+        }
+
+        setOperatorPressed(false);
+    };
+
+    const handleOperator = (value) => {
+        if (expression.endsWith('=')) {
+            setExpression(`${displayValue} ${value}`);
+        } else {
+            setExpression((prev) => `${prev} ${displayValue} ${value}`);
+        }
+        setOperatorPressed(true);
+    };
+
+    const handleEquals = () => {
+        const fullExpr = `${expression} ${displayValue}`;
+        const result = calculateExpression(fullExpr);
+        const formatted = Number(result).toFixed(10).replace(/\.?0+$/, '');
+
+        setExpression(`${fullExpr} =`);
+        setDisplayValue(formatted);
+        setHistory((prev) => [`${fullExpr} = ${formatted}`, ...prev].slice(0, 7));
+        setOperatorPressed(false);
+    };
+
     const handleInput = (value) => {
+
         if (!isNaN(value) || value === '.') {
-            if (displayValue === '0' || operatorPressed || expression.endsWith('=')) {
-                setDisplayValue(value);
-            } else {
-                setDisplayValue((prev) => prev + value);
-            }
-
-            if (expression.endsWith('=')) {
-                setExpression('');
-            }
-
-            setOperatorPressed(false);
+            handleNumberOrDecimal(value);
         }
 
         else if (['+', '-', '*', '/'].includes(value)) {
-            if (expression.endsWith('=')) {
-                setExpression(`${displayValue} ${value}`);
-            } else {
-                setExpression((prev) => `${prev} ${displayValue} ${value}`);
-            }
-            setOperatorPressed(true);
+            handleOperator(value);
         }
 
         else if (value === '+/-') {
@@ -50,14 +70,7 @@ export const useCalculator = () => {
         }
 
         else if (value === '=') {
-            const fullExpr = `${expression} ${displayValue}`;
-            const result = calculateExpression(fullExpr);
-            const formatted = Number(result).toFixed(10).replace(/\.?0+$/, '');
-
-            setExpression(`${fullExpr} =`);
-            setDisplayValue(formatted);
-            setHistory((prev) => [`${fullExpr} = ${formatted}`, ...prev].slice(0, 7));
-            setOperatorPressed(false);
+            handleEquals();
         }
     };
 
