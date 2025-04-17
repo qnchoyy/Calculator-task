@@ -2,7 +2,16 @@ import styles from "./Calculator.module.css";
 import { useCalculator } from "../../hooks/useCalculator";
 
 export default function Calculator() {
-  const { displayValue, handleInput, history, clearHistory } = useCalculator();
+  const {
+    displayValue,
+    handleInput,
+    history,
+    clearHistory,
+    showHistory,
+    toggleHistory,
+    expression,
+    showResult,
+  } = useCalculator();
 
   const buttons = [
     "C",
@@ -28,21 +37,33 @@ export default function Calculator() {
 
   return (
     <div className={styles.calculator}>
-      <div className={styles.display}>{displayValue}</div>
+      {expression && <div className={styles.expression}>{expression}</div>}
+
+      <div className={styles.display}>
+        {showResult ? displayValue : expression || displayValue}
+      </div>
+
+      <button className={styles.toggleHistoryBtn} onClick={toggleHistory}>
+        {showHistory ? "Hide History" : "Show History"}
+      </button>
 
       <div className={styles.buttons}>
         {buttons.map((btn, index) => (
           <button
             key={index}
             onClick={() => handleInput(btn)}
-            className={btn === "0" ? styles.zero : ""}
+            className={`
+              ${btn === "0" ? styles.zero : ""}
+              ${btn === "=" ? styles.equal : ""}
+              ${btn === "C" ? styles.clear : ""}
+            `}
           >
             {btn}
           </button>
         ))}
       </div>
 
-      {history.length > 0 && (
+      {showHistory && history.length > 0 && (
         <div className={styles.history}>
           <h4>History</h4>
           <ul>
