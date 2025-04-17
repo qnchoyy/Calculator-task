@@ -1,36 +1,35 @@
 import { useState } from 'react';
-import { calculate } from '../utils/calculate';
+import { calculateExpression } from '../utils/calculateExpression';
 
 export const useCalculator = () => {
+    const [expression, setExpression] = useState('');
     const [displayValue, setDisplayValue] = useState('0');
-    const [previousValue, setPreviousValue] = useState(null);
-    const [operator, setOperator] = useState(null);
-    const [waitingForNext, setWaitingForNext] = useState(false);
     const [history, setHistory] = useState([]);
     const [showHistory, setShowHistory] = useState(false);
-    const [finalExpression, setFinalExpression] = useState('');
+    const [operatorPressed, setOperatorPressed] = useState(false);
 
     const toggleHistory = () => {
         setShowHistory((prev) => !prev);
     };
 
     const handleInput = (value) => {
-        if (!isNaN(value)) {
-            if (waitingForNext) {
+        if (!isNaN(value) || value === '.') {
+            if (displayValue === '0' || operatorPressed || expression.endsWith('=')) {
                 setDisplayValue(value);
-                setWaitingForNext(false);
             } else {
-                setDisplayValue((prev) => (prev === '0' ? value : prev + value));
+                setDisplayValue((prev) => prev + value);
             }
+
+            if (expression.endsWith('=')) {
+                setExpression('');
+            }
+
+            setOperatorPressed(false);
         }
 
-        else if (value === '.') {
-            if (waitingForNext) {
-                setDisplayValue('0.');
-                setWaitingForNext(false);
-            } else if (!displayValue.includes('.')) {
-                setDisplayValue(displayValue + '.');
-            }
+        else if (['+', '-', '*', '/'].includes(value)) {
+            setExpression((prev) => `${prev} ${displayValue} ${value}`);
+            setOperatorPressed(true);
         }
 
         else if (value === '+/-') {
@@ -42,61 +41,43 @@ export const useCalculator = () => {
         }
 
         else if (value === 'C') {
-            clear();
+            setExpression('');
+            setDisplayValue('0');
         }
 
         else if (value === '=') {
-            if (operator && previousValue !== null) {
-                const result = calculate(previousValue, displayValue, operator);
-                const entry = `${previousValue} ${operator} ${displayValue} =`;
-                setFinalExpression(entry);
+            const fullExpr = `${expression} ${displayValue}`;
+            const result = calculateExpression(fullExpr);
 
-                setHistory((prev) => {
-                    const updated = [`${entry} ${result}`, ...prev];
-                    return updated.slice(0, 7);
-                });
-
-                setDisplayValue(String(result));
-                setPreviousValue(null);
-                setOperator(null);
-                setWaitingForNext(true);
-            }
+            setExpression(`${fullExpr} =`);
+            setDisplayValue(String(result));
+            setHistory((prev) => [`${fullExpr} = ${result}`, ...prev].slice(0, 7));
+            setOperatorPressed(false);
         }
-
-        else {
-            setOperator(value);
-            setPreviousValue(displayValue);
-            setWaitingForNext(true);
-        }
-    };
-
-    const clear = () => {
-        setDisplayValue('0');
-        setPreviousValue(null);
-        setOperator(null);
-        setWaitingForNext(false);
-        setFinalExpression('');
     };
 
     const clearHistory = () => {
         setHistory([]);
     };
 
-    const liveExpression =
-        operator && previousValue !== null
-            ? waitingForNext
-                ? `${previousValue} ${operator}`
-                : `${previousValue} ${operator} ${displayValue}`
-            : displayValue;
+    const isFinal = expression.endsWith('=');
+    const waitingForNext = operatorPressed;
+
+    const liveDisplay = isFinal
+        ? displayValue
+        : waitingForNext
+            ? expression.trim()
+            : `${expression} ${displayValue}`.trim();
 
     return {
         displayValue,
+        expression,
         handleInput,
         history,
         clearHistory,
-        showHistory,
         toggleHistory,
-        expression: finalExpression || liveExpression,
-        showResult: finalExpression !== '',
+        showHistory,
+        liveDisplay,
+        isFinal
     };
 };
