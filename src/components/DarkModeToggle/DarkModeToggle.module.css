@@ -1,19 +1,35 @@
 .wrapper {
-  text-align: center;
-  margin-bottom: 1rem;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
 }
 
 .toggleBtn {
-  background: transparent;
-  border: 2px solid var(--color-dark-text);
+  background: var(--color-button-bg);
   color: var(--color-dark-text);
-  padding: 6px 12px;
-  font-size: 0.95rem;
-  border-radius: 6px;
+  border: none;
+  padding: 8px 14px;
+  font-size: 1rem;
+  border-radius: 20px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .toggleBtn:hover {
-  background-color: var(--color-button-hover);
+  background: var(--color-button-hover);
+  transform: scale(1.05);
+}
+
+.icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.icon.rotate {
+  transform: rotate(360deg);
 }

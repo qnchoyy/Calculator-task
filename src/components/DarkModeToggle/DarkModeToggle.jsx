@@ -8,13 +8,17 @@ export default function DarkModeToggle() {
     document.body.classList.toggle("dark", darkMode);
   }, [darkMode]);
 
+  const handleClick = () => {
+    setDarkMode((prev) => !prev);
+  };
+
   return (
     <div className={styles.wrapper}>
-      <button
-        onClick={() => setDarkMode((prev) => !prev)}
-        className={styles.toggleBtn}
-      >
-        {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+      <button className={styles.toggleBtn} onClick={handleClick}>
+        <span className={`${styles.icon} ${darkMode ? styles.rotate : ""}`}>
+          {darkMode ? "☀️" : "🌙"}
+        </span>
+        {darkMode ? "Light Mode" : "Dark Mode"}
       </button>
     </div>
   );
