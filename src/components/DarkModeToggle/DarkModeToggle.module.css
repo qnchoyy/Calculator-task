@@ -1,0 +1,19 @@
+.wrapper {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.toggleBtn {
+  background: transparent;
+  border: 2px solid var(--color-dark-text);
+  color: var(--color-dark-text);
+  padding: 6px 12px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggleBtn:hover {
+  background-color: var(--color-button-hover);
+}
