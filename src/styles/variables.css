@@ -12,17 +12,15 @@
   --radius: 16px;
   --gap: 12px;
   --padding: 24px;
-}
 
-body {
-  background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
-  font-family: "Inter", "Segoe UI", sans-serif;
-  transition: background 0.5s ease;
+  --font-base: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --font-mono: "Roboto Mono", monospace;
+
+  --gradient-light: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+  --gradient-dark: linear-gradient(135deg, #16222a 0%, #3a6073 100%);
 }
 
 body.dark {
-  background: linear-gradient(135deg, #16222a 0%, #3a6073 100%);
-
   --color-bg: transparent;
   --color-calculator-bg: rgba(44, 44, 46, 0.6);
   --color-display-bg: #111;
