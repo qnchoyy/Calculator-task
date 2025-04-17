@@ -286,13 +286,20 @@ button:active::after {
 
 @media (max-width: 480px) {
   .calculator {
-    padding: 16px;
+    max-width: 320px;
+    margin: 20px auto;
+    gap: 8px;
   }
   .display {
     font-size: 1.8rem;
     padding: 16px;
     border-radius: calc(var(--radius) * 0.75);
   }
+
+  .buttons {
+    gap: 8px;
+  }
+
   button {
     font-size: 1.3rem;
     padding: 16px;
