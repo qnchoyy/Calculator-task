@@ -28,7 +28,11 @@ export const useCalculator = () => {
         }
 
         else if (['+', '-', '*', '/'].includes(value)) {
-            setExpression((prev) => `${prev} ${displayValue} ${value}`);
+            if (expression.endsWith('=')) {
+                setExpression(`${displayValue} ${value}`);
+            } else {
+                setExpression((prev) => `${prev} ${displayValue} ${value}`);
+            }
             setOperatorPressed(true);
         }
 
