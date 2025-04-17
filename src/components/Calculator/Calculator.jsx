@@ -60,18 +60,23 @@ export default function Calculator() {
           </button>
         ))}
       </div>
-
-      {showHistory && history.length > 0 && (
+      {showHistory && (
         <div className={styles.history}>
-          <h4>History</h4>
-          <ul>
-            {history.map((item, idx) => (
-              <li key={idx}>{item}</li>
-            ))}
-          </ul>
-          <button className={styles.clearHistoryBtn} onClick={clearHistory}>
-            Clear History
-          </button>
+          {history.length === 0 ? (
+            <p className={styles.noHistory}>No history available yet.</p>
+          ) : (
+            <>
+              <h4>History</h4>
+              <ul>
+                {history.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+              <button className={styles.clearHistoryBtn} onClick={clearHistory}>
+                Clear History
+              </button>
+            </>
+          )}
         </div>
       )}
     </div>
