@@ -3,14 +3,14 @@ import { useCalculator } from "../../hooks/useCalculator";
 
 export default function Calculator() {
   const {
-    displayValue,
+    liveDisplay,
+    expression,
+    isFinal,
     handleInput,
     history,
-    clearHistory,
     showHistory,
     toggleHistory,
-    expression,
-    showResult,
+    clearHistory,
   } = useCalculator();
 
   const buttons = [
@@ -37,11 +37,9 @@ export default function Calculator() {
 
   return (
     <div className={styles.calculator}>
-      {expression && <div className={styles.expression}>{expression}</div>}
+      {isFinal && <div className={styles.expression}>{expression}</div>}
 
-      <div className={styles.display}>
-        {showResult ? displayValue : expression || displayValue}
-      </div>
+      <div className={styles.display}>{liveDisplay}</div>
 
       <button className={styles.toggleHistoryBtn} onClick={toggleHistory}>
         {showHistory ? "Hide History" : "Show History"}
