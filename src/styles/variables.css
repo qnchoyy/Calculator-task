@@ -1,0 +1,15 @@
+:root {
+  --color-bg: #f4f4f4;
+  --color-calculator-bg: #ffffff;
+  --color-display-bg: #222831;
+  --color-display-text: #00ff7f;
+  --color-button-bg: #e0e0e0;
+  --color-button-hover: #d1d1d1;
+  --color-accent: #ff9f43;
+  --color-equal: #10ac84;
+  --color-dark-text: #333;
+
+  --radius: 8px;
+  --gap: 12px;
+  --padding: 20px;
+}
