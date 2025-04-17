@@ -1,35 +1,86 @@
 .wrapper {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 20px;
+  right: 20px;
   z-index: 1000;
 }
 
 .toggleBtn {
-  background: var(--color-button-bg);
-  color: var(--color-dark-text);
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  color: #333;
   border: none;
-  padding: 8px 14px;
+  padding: 10px 16px;
   font-size: 1rem;
-  border-radius: 20px;
+  border-radius: 50px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  transition: background 0.3s ease, transform 0.2s ease;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
 }
 
 .toggleBtn:hover {
-  background: var(--color-button-hover);
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.toggleBtn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .icon {
   font-size: 1.2rem;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon.rotate {
   transform: rotate(360deg);
+}
+
+:global(body.dark) .toggleBtn {
+  background: linear-gradient(145deg, #3a3a3c, #2c2c2e);
+  color: #eee;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.toggleBtn:hover .icon {
+  animation: pulse 1.5s infinite;
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    top: 16px;
+    right: 16px;
+  }
+
+  .toggleBtn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  .icon {
+    font-size: 1.1rem;
+  }
 }

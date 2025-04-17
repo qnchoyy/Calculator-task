@@ -1,29 +1,35 @@
 :root {
-  --color-bg: #f2f2f5;
-  --color-calculator-bg: #ffffff;
-  --color-display-bg: #222831;
-  --color-display-text: #00c896;
-  --color-button-bg: #e8e8e8;
-  --color-button-hover: #dcdcdc;
-  --color-accent: #ff9f43;
-  --color-equal: #10ac84;
-  --color-dark-text: #2c2c2e;
+  --color-bg: #f0f4f8;
+  --color-calculator-bg: rgba(255, 255, 255, 0.8);
+  --color-display-bg: #1a1a1a;
+  --color-display-text: #4df0c6;
+  --color-button-bg: rgba(240, 240, 240, 0.7);
+  --color-button-hover: rgba(230, 230, 230, 0.9);
+  --color-accent: #ff7043;
+  --color-equal: #00c9a7;
+  --color-dark-text: #2c3e50;
 
-  --radius: 12px;
+  --radius: 16px;
   --gap: 12px;
-  --padding: 20px;
+  --padding: 24px;
+}
+
+body {
+  background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+  font-family: "Inter", "Segoe UI", sans-serif;
+  transition: background 0.5s ease;
 }
 
 body.dark {
-  background: linear-gradient(135deg, #1c1c1e 0%, #2b2b2e 100%);
+  background: linear-gradient(135deg, #16222a 0%, #3a6073 100%);
 
   --color-bg: transparent;
   --color-calculator-bg: rgba(44, 44, 46, 0.6);
   --color-display-bg: #111;
-  --color-display-text: #a5f3fc;
-  --color-button-bg: #3a3a3c;
-  --color-button-hover: #4a4a4c;
-  --color-accent: #ffb74d;
-  --color-equal: #00bfa5;
-  --color-dark-text: #f0f0f0;
+  --color-display-text: #4df0c6;
+  --color-button-bg: rgba(60, 60, 70, 0.7);
+  --color-button-hover: rgba(70, 70, 80, 0.9);
+  --color-accent: #ff9f43;
+  --color-equal: #00d9b6;
+  --color-dark-text: #ecf0f1;
 }
