@@ -48,10 +48,11 @@ export const useCalculator = () => {
         else if (value === '=') {
             const fullExpr = `${expression} ${displayValue}`;
             const result = calculateExpression(fullExpr);
+            const formatted = Number(result).toFixed(10).replace(/\.?0+$/, '');
 
             setExpression(`${fullExpr} =`);
-            setDisplayValue(String(result));
-            setHistory((prev) => [`${fullExpr} = ${result}`, ...prev].slice(0, 7));
+            setDisplayValue(formatted);
+            setHistory((prev) => [`${fullExpr} = ${formatted}`, ...prev].slice(0, 7));
             setOperatorPressed(false);
         }
     };
