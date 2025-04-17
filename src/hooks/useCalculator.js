@@ -7,6 +7,12 @@ export const useCalculator = () => {
     const [operator, setOperator] = useState(null);
     const [waitingForNext, setWaitingForNext] = useState(false);
     const [history, setHistory] = useState([]);
+    const [showHistory, setShowHistory] = useState(false);
+    const [finalExpression, setFinalExpression] = useState('');
+
+    const toggleHistory = () => {
+        setShowHistory((prev) => !prev);
+    };
 
     const handleInput = (value) => {
         if (!isNaN(value)) {
@@ -42,10 +48,11 @@ export const useCalculator = () => {
         else if (value === '=') {
             if (operator && previousValue !== null) {
                 const result = calculate(previousValue, displayValue, operator);
+                const entry = `${previousValue} ${operator} ${displayValue} =`;
+                setFinalExpression(entry);
 
-                const entry = `${previousValue} ${operator} ${displayValue} = ${result}`;
                 setHistory((prev) => {
-                    const updated = [entry, ...prev];
+                    const updated = [`${entry} ${result}`, ...prev];
                     return updated.slice(0, 7);
                 });
 
@@ -63,22 +70,33 @@ export const useCalculator = () => {
         }
     };
 
-
     const clear = () => {
         setDisplayValue('0');
         setPreviousValue(null);
         setOperator(null);
         setWaitingForNext(false);
+        setFinalExpression('');
     };
 
     const clearHistory = () => {
         setHistory([]);
     };
 
+    const liveExpression =
+        operator && previousValue !== null
+            ? waitingForNext
+                ? `${previousValue} ${operator}`
+                : `${previousValue} ${operator} ${displayValue}`
+            : displayValue;
+
     return {
         displayValue,
         handleInput,
         history,
-        clearHistory
+        clearHistory,
+        showHistory,
+        toggleHistory,
+        expression: finalExpression || liveExpression,
+        showResult: finalExpression !== '',
     };
 };
