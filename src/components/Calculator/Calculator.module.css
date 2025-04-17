@@ -20,7 +20,7 @@
 
 .expression {
   font-size: 1rem;
-  color: #999;
+  color: #888;
   text-align: right;
   margin-bottom: 4px;
   padding-right: 5px;
@@ -101,12 +101,4 @@ button:hover {
 
 .toggleHistoryBtn:hover {
   background-color: #666;
-}
-
-.expression {
-  font-size: 1rem;
-  color: #aaa;
-  text-align: right;
-  margin-bottom: 4px;
-  padding-right: 5px;
 }
