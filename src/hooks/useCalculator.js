@@ -36,6 +36,10 @@ export const useCalculator = () => {
     };
 
     const handleEquals = () => {
+        if (!expression || expression.endsWith('=')) {
+            return;
+        }
+
         const fullExpr = `${expression} ${displayValue}`;
         const result = calculateExpression(fullExpr);
         const formatted = Number(result).toFixed(10).replace(/\.?0+$/, '');
@@ -45,7 +49,6 @@ export const useCalculator = () => {
         setHistory((prev) => [`${fullExpr} = ${formatted}`, ...prev].slice(0, 7));
         setOperatorPressed(false);
     };
-
     const handleInput = (value) => {
 
         if (!isNaN(value) || value === '.') {
