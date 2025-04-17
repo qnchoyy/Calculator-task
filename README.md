@@ -1,10 +1,14 @@
 # 🧮 React Calculator Task – Software Engineer (Web)
 
-This project is a simple, responsive calculator web application built as part of a recruitment task for a **Software Engineer (Web)** internship at **Pros**.
+This project is a simple, responsive calculator web application built as part of a recruitment task for a **Software Engineer (Web)** internship at **PROS**.
 
 The goal of the application is to provide a clear, user-friendly interface that allows users to perform basic arithmetic operations. The application was created using **React**, **JavaScript**, and **CSS Modules** for component-based styling.
 
 ---
+
+### 🔗 Live Demo (Netlify):
+
+## https://calculator-task-pros.netlify.app/
 
 ## ✨ Features
 
@@ -51,4 +55,4 @@ The calculator should allow users to perform the following basic arithmetic oper
 
 ### 👨‍💻 Author
 
-**Developed by Yanislav Aleksandrov as part of the application process for Pros – Software Engineer (Web) Internship.**
+**Developed by Yanislav Aleksandrov as part of the application process for PROS – Software Engineer (Web) Internship.**
