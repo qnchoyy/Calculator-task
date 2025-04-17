@@ -1,46 +1,63 @@
 .calculator {
   width: 320px;
   margin: 30px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 12px;
+  padding: var(--padding);
+  background-color: var(--color-calculator-bg);
+  border-radius: var(--radius);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .display {
-  background-color: #222;
-  color: #0f0;
+  background-color: var(--color-display-bg);
+  color: var(--color-display-text);
   font-size: 2.2rem;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: var(--radius);
   text-align: right;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   min-height: 50px;
-  overflow-x: auto;
+}
+
+.expression {
+  font-size: 1rem;
+  color: #999;
+  text-align: right;
+  margin-bottom: 4px;
+  padding-right: 5px;
 }
 
 .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: var(--gap);
 }
 
 button {
   padding: 18px;
   font-size: 1.2rem;
-  background-color: #e0e0e0;
+  background-color: var(--color-button-bg);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius);
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
 }
 
 button:hover {
-  background-color: #d1d1d1;
+  background-color: var(--color-button-hover);
 }
 
 .zero {
   grid-column: span 2;
+}
+
+.equal {
+  background-color: var(--color-equal);
+  color: white;
+}
+
+.clear {
+  background-color: var(--color-accent);
+  color: white;
 }
 
 .history {
@@ -51,23 +68,7 @@ button:hover {
   font-size: 0.9rem;
   max-height: 200px;
   overflow-y: auto;
-}
-
-.history h4 {
-  margin: 0 0 10px;
-  font-weight: 600;
-}
-
-.history ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.history li {
-  padding: 4px 0;
-  color: #333;
-  border-bottom: 1px solid #ddd;
+  color: var(--color-dark-text);
 }
 
 .clearHistoryBtn {
@@ -84,4 +85,28 @@ button:hover {
 
 .clearHistoryBtn:hover {
   background-color: #ff7f23;
+}
+
+.toggleHistoryBtn {
+  margin: 10px 0 15px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  background-color: #888;
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.toggleHistoryBtn:hover {
+  background-color: #666;
+}
+
+.expression {
+  font-size: 1rem;
+  color: #aaa;
+  text-align: right;
+  margin-bottom: 4px;
+  padding-right: 5px;
 }
