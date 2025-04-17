@@ -1,12 +1,54 @@
-# React + Vite
+# 🧮 React Calculator Task – Software Engineer (Web)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simple, responsive calculator web application built as part of a recruitment task for a **Software Engineer (Web)** internship at **Pros**.
 
-Currently, two official plugins are available:
+The goal of the application is to provide a clear, user-friendly interface that allows users to perform basic arithmetic operations. The application was created using **React**, **JavaScript**, and **CSS Modules** for component-based styling.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Real-time expression display
+- Basic arithmetic operations:
+  - ➕ Addition
+  - ➖ Subtraction
+  - ✖️ Multiplication
+  - ➗ Division
+- Light/Dark mode toggle
+- Visual interaction feedback for buttons
+- History tracking with toggle and clear functionality
+- Responsive and polished UI/UX
+
+---
+
+## 🧠 Technologies Used
+
+- [✔️ React] ( Vite )
+- [✔️ JavaScript (ES6+)]
+- [✔️ CSS Modules]
+
+## ✅ How to Run the Project
+
+### 1. 📦 Install dependencies
+
+npm install
+
+### 2. 🚀 Start the development server
+
+npm run dev
+
+🔍 **Task Description**
+Build a simple calculator web application using React and JavaScript.
+The calculator should allow users to perform the following basic arithmetic operations:
+
+# addition
+
+# subtraction
+
+# multiplication
+
+# division
+
+### 👨‍💻 Author
+
+**Developed by Yanislav Aleksandrov as part of the application process for Pros – Software Engineer (Web) Internship.**
